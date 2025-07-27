@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; background: #e3f2fd; }
+        .weather-box { background: white; padding: 20px; border-radius: 10px; display: inline-block; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        input[type="text"] { padding: 10px; width: 200px; border-radius: 5px; border: 1px solid #ccc; }
+        button { padding: 10px 20px; border: none; background: #2196f3; color: white; border-radius: 5px; cursor: pointer; }
+        img { width: 60px; }
+    </style>
+</head>
+<body>
+    <h1>🌤️ Real-Time Weather Dashboard</h1>
+    <form method="POST">
+        <input type="text" name="city" placeholder="Enter city" required>
+        <button type="submit">Get Weather</button>
+    </form>
+    {% if weather.city %}
+    <div class="weather-box">
+        <h2>{{ weather.city }}</h2>
+        <p><strong>{{ weather.temperature }}°C</strong></p>
+        <p>{{ weather.description }}</p>
+        <img src="http://openweathermap.org/img/wn/{{ weather.icon }}@2x.png" alt="weather icon">
+    </div>
+    {% elif weather.error %}
+    <p style="color: red;">{{ weather.error }}</p>
+    {% endif %}
+</body>
+</html>
